@@ -3,8 +3,13 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/modul', [HomeController::class, 'index'])->name('modul');
+Route::get('/role', [HomeController::class, 'index'])->name('role');
 
-Route::get('/', [HomeController::class, 'index']);
+Route::prefix('auth')->group(function () {
+    Route::view('/login', 'pages.auth.login')->name('login');
+});
 
 
 Route::prefix('template')->group(function () {
